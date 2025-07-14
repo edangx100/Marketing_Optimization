@@ -4,6 +4,7 @@ import optuna
 from typing import Tuple, List
 from sklearn.base import BaseEstimator
 from sklearn.metrics import roc_auc_score, r2_score, mean_squared_error, f1_score
+from sklearn.utils.class_weight import compute_sample_weight
 import numpy as np
 
 
@@ -168,9 +169,12 @@ def objective_sales_xgb_f1(trial: optuna.Trial, X_train: pd.DataFrame, X_val: pd
         'random_state': random_state
     }
     
-    # Train model
+    # Compute class weights for imbalanced dataset
+    sample_weights = compute_sample_weight(class_weight='balanced', y=y_train)
+    
+    # Train model with sample weights
     model = xgb.XGBClassifier(**params)
-    model.fit(X_train, y_train)
+    model.fit(X_train, y_train, sample_weight=sample_weights)
     
     # Evaluate using F1 score
     val_pred = model.predict(X_val)
@@ -218,8 +222,11 @@ def train_sales_model_xgb_optuna_f1(X_train: pd.DataFrame, X_val: pd.DataFrame,
     best_params = study.best_params
     best_params['random_state'] = random_state
     
+    # Compute class weights for imbalanced dataset
+    sample_weights = compute_sample_weight(class_weight='balanced', y=y_train)
+    
     model = xgb.XGBClassifier(**best_params)
-    model.fit(X_train, y_train)
+    model.fit(X_train, y_train, sample_weight=sample_weights)
     
     # Evaluate final model using both F1 and ROC-AUC for comparison
     val_pred = model.predict(X_val)
