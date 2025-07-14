@@ -174,43 +174,43 @@ def process_features2(df: pd.DataFrame, le: Optional[LabelEncoder] = None) -> Tu
     for col in count_cols + actbal_cols:
         if col in df.columns:
             df.loc[:, col] = df[col].fillna(0)
-        
-        # Replace missing values with 0 
-        volume_cred_cols = ['VolumeCred', 'VolumeCred_CA']
-        transactions_cred_cols = ['TransactionsCred', 'TransactionsCred_CA']
-        
-        for col in volume_cred_cols + transactions_cred_cols:
-            if col in df.columns:
-                df.loc[:, col] = df[col].fillna(0)
-        
-        # Replace missing values with 0 
-        volume_deb_cols = ['VolumeDeb', 'VolumeDeb_CA', 'VolumeDebCash_Card', 
-                        'VolumeDebCashless_Card', 'VolumeDeb_PaymentOrder']
-        transactions_deb_cols = ['TransactionsDeb', 'TransactionsDeb_CA', 'TransactionsDebCash_Card', 
-                                'TransactionsDebCashless_Card', 'TransactionsDeb_PaymentOrder']
-        
-        for col in volume_deb_cols + transactions_deb_cols:
-            if col in df.columns:
-                df.loc[:, col] = df[col].fillna(0)
+    
+    # Replace missing values with 0 for volume and transaction features
+    volume_cred_cols = ['VolumeCred', 'VolumeCred_CA']
+    transactions_cred_cols = ['TransactionsCred', 'TransactionsCred_CA']
+    
+    for col in volume_cred_cols + transactions_cred_cols:
+        if col in df.columns:
+            df.loc[:, col] = df[col].fillna(0)
+    
+    # Replace missing values with 0 for debit features
+    volume_deb_cols = ['VolumeDeb', 'VolumeDeb_CA', 'VolumeDebCash_Card', 
+                    'VolumeDebCashless_Card', 'VolumeDeb_PaymentOrder']
+    transactions_deb_cols = ['TransactionsDeb', 'TransactionsDeb_CA', 'TransactionsDebCash_Card', 
+                            'TransactionsDebCashless_Card', 'TransactionsDeb_PaymentOrder']
+    
+    for col in volume_deb_cols + transactions_deb_cols:
+        if col in df.columns:
+            df.loc[:, col] = df[col].fillna(0)
 
-        # Create new feature VolumeCredDebRatio = VolumeCred/VolumeDeb
-        if 'VolumeCred' in df.columns and 'VolumeDeb' in df.columns:
-            df['VolumeCredDebRatio'] = df['VolumeCred'] / (df['VolumeDeb'] + 1)  # +1 to avoid division by zero
+    # Create new feature VolumeCredDebRatio = VolumeCred/VolumeDeb
+    if 'VolumeCred' in df.columns and 'VolumeDeb' in df.columns:
+        df['VolumeCredDebRatio'] = df['VolumeCred'] / (df['VolumeDeb'] + 1)  # +1 to avoid division by zero
 
-        # Drop VolumeCred feature
-        if 'VolumeCred' in df.columns:
-            df = df.drop('VolumeCred', axis=1)
+    # Drop VolumeCred feature
+    if 'VolumeCred' in df.columns:
+        df = df.drop('VolumeCred', axis=1)
 
-        # Drop VolumeDeb_CA feature
-        if 'VolumeDeb_CA' in df.columns:
-            df = df.drop('VolumeDeb_CA', axis=1)
+    # Drop VolumeDeb_CA feature
+    if 'VolumeDeb_CA' in df.columns:
+        df = df.drop('VolumeDeb_CA', axis=1)
 
-        # Drop TransactionsCred_CA feature
-        if 'TransactionsCred_CA' in df.columns:
-            df = df.drop('TransactionsCred_CA', axis=1)
+    # Drop TransactionsCred_CA feature
+    if 'TransactionsCred_CA' in df.columns:
+        df = df.drop('TransactionsCred_CA', axis=1)
 
-        # Drop TransactionsDeb_CA feature
-        if 'TransactionsDeb_CA' in df.columns:
-            df = df.drop('TransactionsDeb_CA', axis=1)
+    # Drop TransactionsDeb_CA feature
+    if 'TransactionsDeb_CA' in df.columns:
+        df = df.drop('TransactionsDeb_CA', axis=1)
 
-        return df, le
+    return df, le
