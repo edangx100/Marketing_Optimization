@@ -79,8 +79,6 @@ def assign_best_offer(df: pd.DataFrame) -> pd.DataFrame:
     
     df['Best_Offer'] = [offers[i] for i in best_offer_idx]
     df['Expected_Revenue'] = expected[np.arange(len(df)), best_offer_idx]
-
-    print("df.head(3)\n", df.head(3))
     
     return df
     
