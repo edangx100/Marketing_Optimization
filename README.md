@@ -48,15 +48,15 @@ Six machine learning models were developed to support marketing optimization acr
 
 ### Propensity Analysis by Product
 
-**Consumer Loan High-Propensity Clients:**
+**Consumer Loan:**
 - **Average Propensity**: 33.7% across all clients
 - **Targeting Strategy**: 95 clients (99.0% of targets) assigned CL offers
 
-**Credit Card High-Propensity Clients:**
+**Credit Card:**
 - **Average Propensity**: 26.4% across all clients
 - **Targeting Strategy**: 1 client (1.0% of targets) assigned CC offers
 
-**Mutual Fund High-Propensity Clients:**
+**Mutual Fund:**
 - **Average Propensity**: 20.0% across all clients
 - **Targeting Strategy**: 0 clients assigned MF offers (lower expected value)
 
