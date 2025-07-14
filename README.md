@@ -8,7 +8,7 @@
 
 This analysis applies a data-driven strategy to optimize revenue from direct marketing campaigns. Leveraging a dataset of 1,615 bank clients, **6 models** were trained and applied to identify high-propensity targets and assign optimal offers.
 
-The solution targets the top 15% of clients with personalized offers, achieving an expected revenue of **$699.54** from 96 targeted clients. 95 clients (99.0% of targets) are assigned Consumer Loan offers, 1 client (1.0%) receives Credit Card offers, and 0 clients are assigned Mutual Fund offers due to lower expected revenue per client.
+The solution targets the top 15% of clients with personalized offers, achieving an expected revenue of **$691.39** from 96 targeted clients. All 96 clients (100.0% of targets) are assigned Consumer Loan offers due to higher expected revenue per client.
 
 ## Dataset Preparation
 Data from the `soc_dem`, `products`, `inflow`, and `sales` spreadsheets were merged to create a consolidated dataset of 1,615 bank clients for analysis.
@@ -42,36 +42,36 @@ Six machine learning models were developed to support marketing optimization acr
 
 | Product | Sales Model F1 | Revenue Model RMSE |
 |---------|----------------|-------------------|
-| Consumer Loan | 0.720 | 10.914 |
-| Credit Card | 0.685 | 6.887 |
-| Mutual Fund | 0.669 | 7.013 |
+| Consumer Loan | 0.566 | 11.012 |
+| Credit Card | 0.442 | 6.908 |
+| Mutual Fund | 0.340 | 7.042 |
 
 ### Propensity Analysis by Product
 
 **Consumer Loan:**
-- **Average Propensity**: 33.7% across all clients
-- **Targeting Strategy**: 95 clients (99.0% of targets) assigned CL offers
+  - **Average Propensity**: 33.2% across all clients
+  - **Targeting Strategy**: 96 clients (100.0% of targets) assigned CL offers
 
 **Credit Card:**
-- **Average Propensity**: 26.4% across all clients
-- **Targeting Strategy**: 1 client (1.0% of targets) assigned CC offers
+  - **Average Propensity**: 11.4% across all clients
+  - **Targeting Strategy**: 0 clients assigned CC offers
 
 **Mutual Fund:**
-- **Average Propensity**: 20.0% across all clients
-- **Targeting Strategy**: 0 clients assigned MF offers (lower expected value)
+  - **Average Propensity**: 8.0% across all clients
+  - **Targeting Strategy**: 0 clients assigned MF offers (lower expected value)
 
 ### Optimal Offer Assignment Strategy
 
 **Client Targeting Decision Logic:**
-- **Consumer Loans**: Assigned to clients with highest CL expected value (95 clients)
-- **Credit Cards**: Assigned to clients with highest CC expected value (1 client)  
+- **Consumer Loans**: Assigned to clients with highest CL expected value (96 clients)
+- **Credit Cards**: Not assigned due to lower expected revenue per client
 - **Mutual Funds**: Not assigned due to lower expected revenue per client
 
 **Expected Revenue by Strategy:**
-- **Total Expected Revenue**: $699.54 from 96 targeted clients
-- **Average Expected Revenue per Client**: $2.76
-- **Lift vs Baseline Targeting**: 164.2%
-- **Revenue Distribution**: CL (99.0%), CC (1.0%), MF (0.0%)
+- **Total Expected Revenue**: $691.39 from 96 targeted clients
+- **Average Expected Revenue per Client**: $2.78
+- **Lift vs Baseline Targeting**: 159.0%
+- **Revenue Distribution**: CL (100.0%), CC (0.0%), MF (0.0%)
 
 
 ## Recommendations
