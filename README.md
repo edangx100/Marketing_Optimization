@@ -58,7 +58,7 @@ Six machine learning models using XGBoost were trained to support marketing opti
 
 **Mutual Fund:**
   - **Average Propensity**: 45.4% across all clients
-  - **Targeting Strategy**: 0 clients assigned
+  - **Targeting Strategy**: 0 clients assigned (low expected revenue per client)
 
 ### Optimal Offer Assignment Strategy
 
