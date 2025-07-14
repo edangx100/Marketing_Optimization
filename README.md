@@ -23,7 +23,7 @@ The dataset was split into a training set (60%, 969 clients) and a test set (40%
 | **6. Revenue forecast / lift**   | —                                                                           | Sum of `best_EV_i` in the list                                                                                                 |
 
 
-## Key Results: High-Propensity Client Lists
+## Key Results
 
 ### Model Performance
 | Product | Sales Model F1 | Revenue Model R² | Revenue Model RMSE | Training Set |
