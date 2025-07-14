@@ -22,7 +22,7 @@ The dataset was split into a training set (60%, 969 clients) and a test set (40%
 | **1. Score purchase propensity** | 3 **binary classifiers**<br> • `Sale_CL_model`: Predicts Consumer Loan purchase probability <br> • `Sale_CC_model`: Predicts Credit Card purchase probability <br> • `Sale_MF_model`: Predicts Mutual Fund purchase probability | For every client *i* a calibrated probability p̂<sub>ip</sub> (e.g. "Jane has a **31 %** chance of taking a consumer loan").    |
 | **2. Score conditional revenue** | 3 **regressors**<br> • `Rev_CL_model`: Predicts revenue if Consumer Loan sale occurs<br> • `Rev_CC_model`: Predicts revenue if Credit Card sale occurs <br> • `Rev_MF_model`: Predicts revenue if Mutual Fund sale occurs           | For the same client *i* a point estimate of revenue **if** the sale occurs, r̂<sub>ip</sub> (e.g. "expected loan margin \$135"). |
 | **3. Combine to expected value** | —                                                                    | EV<sub>ip</sub> = p̂<sub>ip</sub> × r̂<sub>ip</sub> for each product *p*                                                |
-| **4. Pick the best offer**       | —                                                                        | `best_offer_i` = argmax<sub>p</sub> EV<sub>ip</sub> <br>`best_EV_i` = max<sub>p</sub> EV<sub>ip</sub>        One optimal offer per client with expected value justification                         |
+| **4. Pick the best offer**       | —                                                                        | `best_offer_i` = argmax<sub>p</sub> EV<sub>ip</sub> <br>`best_EV_i` = max<sub>p</sub> EV<sub>ip</sub> <br>One optimal offer per client with expected value justification                         |
 | **5. Build the final list**      | —                                                                   | Rank clients by `best_EV_i`, slice the top 15 %.                                                                               |
 | **6. Revenue forecast / lift**   | —                                                                           | Sum of `best_EV_i` in the list                                                                                                 |
 
@@ -67,12 +67,12 @@ Six machine learning models using XGBoost were trained to support marketing opti
 - **Credit Cards**: Assigned to clients with highest CC expected value (7 clients)
 - **Mutual Funds**: Not Assigned
 
-**Expected Revenue by Strategy:**
-- **Total Expected Revenue**: $599.22 from 96 targeted clients
+**Estimated Revenue by Strategy:**
+- **Total Estimated Revenue**: $599.22 from 96 targeted clients
 - **Revenue Distribution**: CL $561.62 (93.7%), CC $37.60 (6.3%)
 
 
 ## Recommendations
 1. **Deploy Targeting Strategy**: Implement the 96-client targeting list ([targeted_clients.csv](./targeted_clients.csv)) for next campaign
-2. **Monitor Performance**: Track actual vs. expected revenue for model validation
+2. **Monitor Performance**: Track actual vs. estimated revenue for model validation
 3. **Iterate Models**: Retrain with new campaign results for continuous improvement
