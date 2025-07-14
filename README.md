@@ -30,11 +30,21 @@ The dataset was split into a training set (60%, 969 clients) and a test set (40%
 ## Key Results
 
 ### Model Performance
-| Product | Sales Model F1 | Revenue Model R² | Revenue Model RMSE |
-|---------|----------------|------------------|-------------------|
-| Consumer Loan | 0.720 | 0.103 | 10.914 |
-| Credit Card | 0.685 | -0.027 | 6.887 |
-| Mutual Fund | 0.669 | -0.001 | 7.013 |
+Six machine learning models were developed to support marketing optimization across three financial products:
+#### 📊 Revenue Regression Models
+- Consumer Loan (`Revenue_CL`)
+- Credit Card (`Revenue_CC`)
+- Mutual Fund (`Revenue_MF`)
+#### 🛍️ Sales Classification Models
+- Consumer Loan (`Sale_CL`)
+- Credit Card (`Sale_CC`)
+- Mutual Fund (`Sale_MF`)
+
+| Product | Sales Model F1 | Revenue Model RMSE |
+|---------|----------------|-------------------|
+| Consumer Loan | 0.720 | 10.914 |
+| Credit Card | 0.685 | 6.887 |
+| Mutual Fund | 0.669 | 7.013 |
 
 ### Propensity Analysis by Product
 
