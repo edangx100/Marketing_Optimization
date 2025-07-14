@@ -24,7 +24,7 @@ The dataset was split into a training set (60%, 969 clients) and a test set (40%
 | **3. Combine to expected value** | —                                                                    | EV<sub>ip</sub> = p̂<sub>ip</sub> × r̂<sub>ip</sub> for each product *p*                                                |
 | **4. Pick the best offer**       | —                                                                        | `best_offer_i` = argmax<sub>p</sub> EV<sub>ip</sub> <br>`best_EV_i` = max<sub>p</sub> EV<sub>ip</sub> <br>One optimal offer per client with expected value justification                         |
 | **5. Build the final list**      | —                                                                   | Rank clients by `best_EV_i`, slice the top 15 %.                                                                               |
-| **6. Revenue forecast / lift**   | —                                                                           | Sum of `best_EV_i` in the list                                                                                                 |
+| **6. Revenue forecast**   | —                                                                           | Sum of `best_EV_i` in the list                                                                                                 |
 
 
 ## 📈 **Key Results**
