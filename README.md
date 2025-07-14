@@ -74,13 +74,7 @@ Six machine learning models using XGBoost were trained to support marketing opti
 ---
 
 ### <span style="color: gray;">*Estimated Revenue Definition*</span>  
-
-<span style="color: gray;">*Estimated Revenue represents the projected revenue based on the optimal product offer selected for each client.*</span>
-
-<span style="color: gray;">*Example:*  
-*If a client's highest expected value is associated with Consumer Loan (CL) among the three products — Consumer Loan (CL), Credit Card (CC), and Mutual Fund (MF) — then the Estimated Revenue corresponds to the revenue predicted for CL.*</span>
-
-<span style="color: gray;">*In essence, it reflects the revenue tied to the product with the highest expected return per client.*</span>
+<span style="color: gray;">*Estimated Revenue reflects the revenue tied to the product with the highest expected return per client.*</span>
 
 
 ## 💡 **Recommendations**
