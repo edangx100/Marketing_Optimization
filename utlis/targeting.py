@@ -79,6 +79,14 @@ def assign_best_offer(df: pd.DataFrame) -> pd.DataFrame:
     
     df['Best_Offer'] = [offers[i] for i in best_offer_idx]
     df['Expected_Revenue'] = expected[np.arange(len(df)), best_offer_idx]
+
+        # Calculate total revenue from all clients based on their selected product's predicted revenue
+
+    for idx, row in df.iterrows():
+        best_offer = row['Best_Offer']
+        revenue_col = f'Revenue_{best_offer}'
+        revenue_from_best_offer = row[revenue_col]
+        df.at[idx, 'Revenue_from_Best_Offer'] = revenue_from_best_offer
     
     return df
     
@@ -103,7 +111,7 @@ def select_top_targets(df: pd.DataFrame, top_frac: float = 0.15) -> pd.DataFrame
     df_sorted = df.sort_values('Expected_Revenue', ascending=False).head(n)
     
     # Select relevant columns for final output
-    output_cols = ['Client', 'Best_Offer', 'Expected_Revenue']
+    output_cols = ['Client', 'Best_Offer', 'Revenue_from_Best_Offer']
     if 'Age' in df.columns:
         output_cols.append('Age')
     if 'Tenure' in df.columns:
@@ -129,19 +137,21 @@ def calculate_revenue_forecast(targets_df: pd.DataFrame, df_best_offer: pd.DataF
         Dictionary containing forecast metrics including total revenue, 
         number of targets, lift percentage, etc.
     """
-    # Expected revenue from targeted clients
-    total_expected_revenue = targets_df['Expected_Revenue'].sum()
 
-    # Calculate average revenue 
+    # Calculate total revenue from targeted clients using the Revenue_from_Best_Offer column
+    total_revenue = targets_df['Revenue_from_Best_Offer'].sum()
+
+
+    # Calculate average revenue based on Revenue_from_Best_Offer
     n_targets = len(targets_df)
-    avg_baseline_revenue = df_best_offer['Expected_Revenue'].mean()
+    avg_baseline_revenue = df_best_offer['Revenue_from_Best_Offer'].mean()
     baseline_revenue = n_targets * avg_baseline_revenue
     
     # Calculate lift
-    lift = total_expected_revenue / baseline_revenue if baseline_revenue > 0 else 0
+    lift = total_revenue / baseline_revenue if baseline_revenue > 0 else 0
     
     forecast_results = {
-        'total_expected_revenue': total_expected_revenue,
+        'total_revenue': total_revenue,
         'targeted_clients': n_targets,
         'avg_baseline_revenue_per_client': avg_baseline_revenue,
         'baseline_revenue': baseline_revenue,
@@ -198,8 +208,7 @@ def print_targeting_summary(targets: pd.DataFrame, forecast: Dict[str, Any]) -> 
     """
     print("\n=== TARGETING SUMMARY ===")
     print(f"Total clients targeted: {forecast['targeted_clients']}")
-    print(f"Total expected revenue: ${forecast['total_expected_revenue']:.2f}")
-    print(f"Average expected revenue per client: ${forecast['avg_baseline_revenue_per_client']:.2f}")
+    print(f"Total revenue: ${forecast['total_revenue']:.2f}")
     print(f"Lift vs baseline targeting: {forecast['lift_percentage']:.1f}%")
     
     print(f"\nOffer distribution:")
@@ -207,3 +216,10 @@ def print_targeting_summary(targets: pd.DataFrame, forecast: Dict[str, Any]) -> 
     for offer, count in offer_counts.items():
         percentage = (count / len(targets)) * 100
         print(f"  {offer}: {count} clients ({percentage:.1f}%)")
+    
+    print(f"\nRevenue distribution:")
+    revenue_by_offer = targets.groupby('Best_Offer')['Revenue_from_Best_Offer'].sum()
+    total_targeted_revenue = targets['Revenue_from_Best_Offer'].sum()
+    for offer, revenue in revenue_by_offer.items():
+        percentage = (revenue / total_targeted_revenue) * 100
+        print(f"  {offer}: ${revenue:.2f} ({percentage:.1f}%)")
