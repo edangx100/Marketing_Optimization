@@ -61,12 +61,6 @@ The dataset was split into a training set (60%, 969 clients) and a test set (40%
 
 
 ## Recommendations
-
-### Immediate Actions
 1. **Deploy Targeting Strategy**: Implement the 96-client targeting list ([targeted_clients.csv](./targeted_clients.csv)) for next campaign
 2. **Monitor Performance**: Track actual vs. expected revenue for model validation
 3. **Iterate Models**: Retrain with new campaign results for continuous improvement
-
-### Long-term Strategy
-1. **Expand Feature Set**: Incorporate additional behavioral and transactional data
-2. **Advanced Modeling**: Experiment with ensemble methods and deep learning
