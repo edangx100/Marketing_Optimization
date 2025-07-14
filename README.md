@@ -1,5 +1,9 @@
 # Direct Marketing Revenue Optimization - Executive Summary
 
+<p align="center">
+  <img src="https://miro.medium.com/v2/resize:fit:367/format:webp/1*DbTurClYzPthFSM8ZDfUmw.jpeg" alt="Direct Marketing Strategy">
+</p>
+
 ## Executive Overview
 
 This analysis applies a data-driven strategy to optimize revenue from direct marketing campaigns. Leveraging a dataset of 1,615 bank clients, **6 models** were trained and applied to identify high-propensity targets and assign optimal offers.
