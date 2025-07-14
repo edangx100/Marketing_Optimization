@@ -4,18 +4,18 @@
   <img src="https://miro.medium.com/v2/resize:fit:367/format:webp/1*DbTurClYzPthFSM8ZDfUmw.jpeg" alt="Direct Marketing Strategy">
 </p>
 
-## Executive Overview
+## 📋 **Executive Overview**
 
 This analysis applies a data-driven strategy to optimize revenue from direct marketing campaigns. Leveraging a dataset of 1,615 bank clients, **6 models** were trained and applied to identify high-propensity targets and assign optimal offers.
 
 The solution targets the top 15% of clients with personalized offers, achieving an estimated revenue of **$599.22** from 96 targeted clients. 89 clients (92.7%) are assigned Consumer Loan offers, 7 clients (7.3%) are assigned Credit Card offers.
 
-## Dataset Preparation
+## 📊 **Dataset Preparation**
 Data from the `soc_dem`, `products`, `inflow`, and `sales` spreadsheets were merged to create a consolidated dataset of 1,615 bank clients for analysis.
 
 The dataset was split into a training set (60%, 969 clients) and a test set (40%, 646 clients) for targeting evaluation. The top 15% of clients from the test set (96 individuals) were selected for targeting.
 
-## Methodology: 6-Stage Targeting Strategy
+## 🔬 **Methodology: 6-Stage Targeting Strategy**
 
 | Stage                            | Model(s) used                                                                     | Output                                                                                                        |
 | -------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -27,15 +27,15 @@ The dataset was split into a training set (60%, 969 clients) and a test set (40%
 | **6. Revenue forecast / lift**   | —                                                                           | Sum of `best_EV_i` in the list                                                                                                 |
 
 
-## Key Results
+## 📈 **Key Results**
 
 ### Model Performance
 Six machine learning models using XGBoost were trained to support marketing optimization across three financial products:
-#### 📊 Revenue Regression Models
+#### Revenue Regression Models
 - Consumer Loan (`Revenue_CL`)
 - Credit Card (`Revenue_CC`)
 - Mutual Fund (`Revenue_MF`)
-#### 🛍️ Sales Classification Models
+#### Sales Classification Models
 - Consumer Loan (`Sale_CL`)
 - Credit Card (`Sale_CC`)
 - Mutual Fund (`Sale_MF`)
@@ -71,8 +71,18 @@ Six machine learning models using XGBoost were trained to support marketing opti
 - **Total Estimated Revenue**: $599.22 from 96 targeted clients
 - **Revenue Distribution**: CL $561.62 (93.7%), CC $37.60 (6.3%)
 
+<small>
+### 📈 Estimated Revenue Definition  
 
-## Recommendations
+**Estimated Revenue** represents the projected revenue based on the optimal product offer selected for each client.  
+**Example:**  
+If a client's highest expected value is associated with **Consumer Loan (CL)** among the three products — Consumer Loan (CL), Credit Card (CC), and Mutual Fund (MF) —  
+then the Estimated Revenue corresponds to the revenue predicted for **CL**.  
+💡 In essence, it reflects the revenue tied to the product with the highest expected return per client.
+</small>
+
+
+## 💡 **Recommendations**
 1. **Deploy Targeting Strategy**: Implement the 96-client targeting list ([targeted_clients.csv](./targeted_clients.csv)) for next campaign
 2. **Monitor Performance**: Track actual vs. estimated revenue for model validation
 3. **Iterate Models**: Retrain with new campaign results for continuous improvement
