@@ -8,7 +8,7 @@
 
 This analysis applies a data-driven strategy to optimize revenue from direct marketing campaigns. Leveraging a dataset of 1,615 bank clients, **6 models** were trained and applied to identify high-propensity targets and assign optimal offers.
 
-The solution targets the top 15% of clients with personalized offers, achieving an expected revenue of **$691.39** from 96 targeted clients. All 96 clients (100.0% of targets) are assigned Consumer Loan offers due to higher expected revenue per client.
+The solution targets the top 15% of clients with personalized offers, achieving an expected revenue of **$691.39** from 96 targeted clients. 73 clients (76.0%) are assigned Consumer Loan offers, 21 clients (21.9%) receive Credit Card offers, and 2 clients (2.1%) are assigned Mutual Fund offers.
 
 ## Dataset Preparation
 Data from the `soc_dem`, `products`, `inflow`, and `sales` spreadsheets were merged to create a consolidated dataset of 1,615 bank clients for analysis.
@@ -50,28 +50,28 @@ Six machine learning models were developed to support marketing optimization acr
 
 **Consumer Loan:**
   - **Average Propensity**: 33.2% across all clients
-  - **Targeting Strategy**: 96 clients (100.0% of targets) assigned CL offers
+  - **Targeting Strategy**: 73 clients (76.0% of targets) assigned CL offers
 
 **Credit Card:**
   - **Average Propensity**: 11.4% across all clients
-  - **Targeting Strategy**: 0 clients assigned CC offers
+  - **Targeting Strategy**: 21 clients (21.9% of targets) assigned CC offers
 
 **Mutual Fund:**
   - **Average Propensity**: 8.0% across all clients
-  - **Targeting Strategy**: 0 clients assigned MF offers (lower expected value)
+  - **Targeting Strategy**: 2 clients (2.1% of targets) assigned MF offers
 
 ### Optimal Offer Assignment Strategy
 
 **Client Targeting Decision Logic:**
-- **Consumer Loans**: Assigned to clients with highest CL expected value (96 clients)
-- **Credit Cards**: Not assigned due to lower expected revenue per client
-- **Mutual Funds**: Not assigned due to lower expected revenue per client
+- **Consumer Loans**: Assigned to clients with highest CL expected value (73 clients)
+- **Credit Cards**: Assigned to clients with highest CC expected value (21 clients)
+- **Mutual Funds**: Assigned to clients with highest MF expected value (2 clients)
 
 **Expected Revenue by Strategy:**
 - **Total Expected Revenue**: $691.39 from 96 targeted clients
 - **Average Expected Revenue per Client**: $2.78
 - **Lift vs Baseline Targeting**: 159.0%
-- **Revenue Distribution**: CL (100.0%), CC (0.0%), MF (0.0%)
+- **Revenue Distribution**: CL (76.0%), CC (21.9%), MF (2.1%)
 
 
 ## Recommendations
